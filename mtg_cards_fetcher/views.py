@@ -109,8 +109,12 @@ def callback ( request ):
 
                     rpy = full_cards_information ( cards )
                 elif event.message.text.lower() == 'oracle':
-                    cards = scrython.cards.Named ( fuzzy = get_card_name ( event.source.user_id ) )
-                    rpy = TextSendMessage ( full_cards_information ( cards ) )
+                    name = get_card_name ( evnet.source.user_id )
+                    if name == '':
+                        rpy = TextSendMessage ( '[Error] Previous result is not exist.' )
+                    else:
+                        cards = scrython.cards.Named ( fuzzy = name )
+                        rpy = TextSendMessage ( full_cards_information ( cards ) )
                 elif event.message.text.lower() == 'help':
                     rpy = 'How to use this line bot:\n\n'
                     rpy += 'random                         Get a random card and get it\'s informations.\n'
@@ -137,8 +141,12 @@ def callback ( request ):
 
                             rpy = [TextSendMessage ( full_cards_information ( cards ) ), ImageSendMessage ( original_content_url = cards.image_uris()['png'], preview_image_url = cards.image_uris()['png'] )]
                 elif event.message.text.lower() == 'picture':
-                    cards = scrython.cards.Named ( fuzzy = get_card_name ( event.source.user_id ) )
-                    rpy = ImageSendMessage ( original_content_url = cards.image_uris()['png'], preview_image_url = cards.image_uris()['png'] )
+                    name = get_card_name ( event.source.user_id )
+                    if name == "":
+                        rpy = TextSendMessage ( '[Error] Previous result is not exist.' )
+                    else:
+                        cards = scrython.cards.Named ( fuzzy = name )
+                        rpy = ImageSendMessage ( original_content_url = cards.image_uris()['png'], preview_image_url = cards.image_uris()['png'] )
                 elif legalities_card_check ( event.message.text ):
                     names = fetch_card_name ( event.message.text )
                     if names == '':
@@ -152,7 +160,7 @@ def callback ( request ):
                             storge_card_name ( event.source.user_id, cards.name() )
                             rpy = TextSendMessage ( get_legalities ( cards ) )
                 else:
-                    rpy = TextSendMessage ( 'Unknown command, please try again.' )
+                    rpy = TextSendMessage ( '[Error] Unknown command, please try again.' )
 
                 line_bot_api.reply_message ( event.reply_token, rpy )
         return HttpResponse()
