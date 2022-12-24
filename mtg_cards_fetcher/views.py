@@ -25,7 +25,9 @@ def full_cards_information ( cards ):
     rpy = cards.name()
     if cards.reserved():
         rpy += '\t<Reserved>'
-    rpy += '\n' + cards.mana_cost() + '\n'
+    rpy += '\n'
+    if cards.type_line() != 'Land':
+        rpy += cards.mana_cost() + '\n'
     rpy += cards.type_line() + '\n'
     rpy += cards.oracle_text()
     if is_creature ( cards ):
@@ -65,6 +67,23 @@ def fetch_try ( name ):
         return cards
     except scrython.foundation.ScryfallError:
         return 'Failed to find cards, please provide card name more completely.'
+
+def get_legalities ( cards ):
+    rpy = 'Legalities of ' + cards.name() + ':\n'
+    for i in cards.legalities():
+        rpy += '    ' + i + ':'
+        for j in range ( 17 - len ( i ) ):
+            rpy += ' '
+        if cards.legalities()[i] == 'legal':
+            rpy += 'Legal'
+        else:
+            rpy += 'Not Legal'
+        if i != 'premodern':
+            rpy += '\n'
+
+    return rpy
+
+    
 
 @csrf_exempt
 def callback ( request ):
@@ -124,36 +143,14 @@ def callback ( request ):
                     names = fetch_card_name ( event.message.text )
                     if names == '':
                         cards = scrython.cards.Named ( fuzzy = get_card_name ( event.source.user_id ) )
+                        rpy = TextSendMessage ( get_legalities ( cards ) )
                     else:
                         cards = fetch_try ( names )
-                        cards = scrython.cards.Named ( fuzzy = names )
                         if type ( cards ) == str:
                             rpy = TextSendMessage ( cards )
-                            for i in cards.legalities():
-                                rpy += i + ':'
-                                for j in range ( 17 - len ( i ) ):
-                                    rpy += ' '
-                                if cards.legalities()[i] == 'legal':
-                                    rpy += 'Legal'
-                                else:
-                                    rpy += 'Not Legal'
-                                if i != 'premodern':
-                                    rpy += '\n'
-
                         else:
                             storge_card_name ( event.source.user_id, cards.name() )
-                            for i in cards.legalities():
-                                rpy += i + ':'
-                                for j in range ( 17 - len ( i ) ):
-                                    rpy += ' '
-                                if cards.legalities()[i] == 'legal':
-                                    rpy += 'Legal'
-                                else:
-                                    rpy += 'Not Legal'
-                                if i != 'premodern':
-                                    rpy += '\n'
-
-                    rpy = TextSendMessage ( rpy )
+                            rpy = TextSendMessage ( get_legalities ( cards ) )
                 else:
                     rpy = TextSendMessage ( 'Unknown command, please try again.' )
 
