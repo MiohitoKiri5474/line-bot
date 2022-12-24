@@ -47,3 +47,14 @@ ngrok http 8000
 ```
 
 ![](picture/ngrok.png)
+
+> That url at `Forwarding` is the proxy url (`https://b685-140-116-246-190.jp.ngrok.io` in this case), you will get diffrent url when you start Ngrok up next time.
+
+Then update `ALLOWED_HOSTS` at `mylinebot/settings.py` and webhook settings at Line Developers website.
+![](picture/urls.png)
+![](picture/line_dev.png)
+
+After these prepare, start django server up.
+```sh
+python3 manage.py runserver
+```
