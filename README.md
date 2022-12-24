@@ -52,10 +52,26 @@ ngrok http 8000
 > That url at `Forwarding` is the proxy url (`https://b685-140-116-246-190.jp.ngrok.io` in this case), you will get diffrent url when you start Ngrok up next time.
 
 Then update `ALLOWED_HOSTS` at `mylinebot/settings.py` and webhook settings at Line Developers website.
+
 ![](picture/urls.png)
+
 ![](picture/line_dev.png)
 
 After these prepare, start django server up.
 ```sh
 python3 manage.py runserver
 ```
+
+> You may have some problem when you start up bot first time and if the message is like
+> ```
+> RuntimeError: There is no current event loop in thread 'Thread-1 (process_request_thread)'.
+> ```
+> It mean you have some error with scrython, you can add these 2 lines into scrython's source code at line 35
+> ![](picture/scrython.png)
+> ```py
+> # path
+> #		Ubuntu: ~/.local/lib/python3.10/site-packages/scrython/foundation.py
+> #		macOS:	/usr/local/lib/python3.10/site-packages/scrython/foundation.py
+> new_loop = asyncio.new_event_loop()
+> asyncio.set_event_loop ( new_loop )
+> ```
