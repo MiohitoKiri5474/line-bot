@@ -12,9 +12,10 @@ Before deploy this bot, there is some python package need to install:
  - requests
  - beautifulsoup4
  - line-bot-sdk
+ - django
 
 ```sh
-pip3 install scrython transitions requests beautifulsoup4 line-bot-sdk
+pip3 install scrython transitions requests beautifulsoup4 line-bot-sdk django
 ```
 
 ### Ngrok
