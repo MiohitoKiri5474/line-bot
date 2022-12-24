@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-=ctq(_vdsd3!he=8*r^=87vwmm0wo8hy)=z0z@aseln)k4ld7u
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['f276-2001-b011-e009-71a0-a5d6-b0b0-aced-94a8.jp.ngrok.io', 'localhost']
+ALLOWED_HOSTS = ['c800-2001-b011-e009-31f7-a99e-900c-e0c9-cfe7.jp.ngrok.io']
 
 LINE_CHANNEL_ACCESS_TOKEN = 'qPxCBLIEihui5xbCDMrPeVGqpnCfm5RxChrkXGJa5aQ8MBDPqe1j7LAVLBaFYO4rFFkjaZuOlpFvcChHjrKxGXcu7ItBYRvUT6e0ITauG5a6He9jdP8CVvNtwBBycBCLBjD/xhJDgyiFNrdevPq+pAdB04t89/1O/w1cDnyilFU='
 LINE_CHANNEL_SECRET = '18026123b30db457ba4de0becf978599'
