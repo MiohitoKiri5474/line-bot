@@ -67,7 +67,6 @@ python3 manage.py runserver
 > RuntimeError: There is no current event loop in thread 'Thread-1 (process_request_thread)'.
 > ```
 > It mean you have some error with scrython, you can add these 2 lines into scrython's source code at line 35
-> ![](picture/scrython.png)
 > ```py
 > # path
 > #		Ubuntu: ~/.local/lib/python3.10/site-packages/scrython/foundation.py
@@ -75,3 +74,5 @@ python3 manage.py runserver
 > new_loop = asyncio.new_event_loop()
 > asyncio.set_event_loop ( new_loop )
 > ```
+
+![](picture/scrython.png)
