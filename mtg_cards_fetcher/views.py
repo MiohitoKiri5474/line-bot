@@ -108,7 +108,7 @@ def callback ( request ):
                     print ( cards.name() )
                     storge_card_name ( event.source.user_id, cards.name() )
 
-                    rpy = full_cards_information ( cards )
+                    rpy = TextSendMessage ( full_cards_information ( cards ) )
                 elif event.message.text.lower() == 'oracle':
                     name = get_card_name ( event.source.user_id )
                     if name == '':
