@@ -101,10 +101,11 @@ def callback ( request ):
         for event in events:
             if isinstance ( event, MessageEvent ):
                 rpy = ''
-                if event.message.text == 'foo':
+                if event.message.text.lower() == 'foo':
                     rpy = TextSendMessage ( 'bar' )
                 elif event.message.text.lower() == 'random':
                     cards = scrython.cards.Random()
+                    print ( cards.name() )
                     storge_card_name ( event.source.user_id, cards.name() )
 
                     rpy = full_cards_information ( cards )
