@@ -109,7 +109,7 @@ def callback ( request ):
 
                     rpy = full_cards_information ( cards )
                 elif event.message.text.lower() == 'oracle':
-                    name = get_card_name ( evnet.source.user_id )
+                    name = get_card_name ( event.source.user_id )
                     if name == '':
                         rpy = TextSendMessage ( '[Error] Previous result is not exist.' )
                     else:
