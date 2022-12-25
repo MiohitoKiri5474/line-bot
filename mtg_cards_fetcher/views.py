@@ -105,7 +105,6 @@ def callback ( request ):
                     rpy = TextSendMessage ( 'bar' )
                 elif event.message.text.lower() == 'random':
                     cards = scrython.cards.Random()
-                    print ( cards.name() )
                     storge_card_name ( event.source.user_id, cards.name() )
 
                     rpy = [TextSendMessage ( full_cards_information ( cards ) ), ImageSendMessage ( original_content_url = cards.image_uris()['png'], preview_image_url = cards.image_uris()['png'] )]
