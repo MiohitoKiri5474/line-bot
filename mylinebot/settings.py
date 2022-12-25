@@ -25,9 +25,9 @@ SECRET_KEY = 'django-insecure-=ctq(_vdsd3!he=8*r^=87vwmm0wo8hy)=z0z@aseln)k4ld7u
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ngrok_url = '604d-140-116-246-190.jp.ngrok.io'
+heroku_url = 'mtg-cards-fetcher.herokuapp.com'
 
-ALLOWED_HOSTS = [ngrok_url]
+ALLOWED_HOSTS = [heroku_url]
 
 LINE_CHANNEL_ACCESS_TOKEN = 'qPxCBLIEihui5xbCDMrPeVGqpnCfm5RxChrkXGJa5aQ8MBDPqe1j7LAVLBaFYO4rFFkjaZuOlpFvcChHjrKxGXcu7ItBYRvUT6e0ITauG5a6He9jdP8CVvNtwBBycBCLBjD/xhJDgyiFNrdevPq+pAdB04t89/1O/w1cDnyilFU='
 LINE_CHANNEL_SECRET = '18026123b30db457ba4de0becf978599'
