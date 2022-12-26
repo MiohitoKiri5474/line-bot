@@ -74,5 +74,4 @@ python3 manage.py runserver
 > new_loop = asyncio.new_event_loop()
 > asyncio.set_event_loop ( new_loop )
 > ```
-
-![](picture/scrython.png)
+> ![](picture/scrython.png)

@@ -9,11 +9,17 @@ from linebot.models import MessageEvent, TextSendMessage, ImageSendMessage
 
 import time, scrython, json, requests
 from PIL import Image
+
+from .. import machine
  
 line_bot_api = LineBotApi ( settings.LINE_CHANNEL_ACCESS_TOKEN )
 parser = WebhookParser ( settings.LINE_CHANNEL_SECRET )
 
 ngrok_url = '7105-2001-b011-e009-31f7-a99e-900c-e0c9-cfe7.jp.ngrok.io'
+
+def show_fsm():
+    machine.get_graph().draw ( "fsm.png", prog = "dot", format = "png" )
+    return send_file ( "fsm.png", mimetype = "image/png" )
 
 def is_creature ( cards ):
     spt = cards.type_line().split ( ' ' )
@@ -107,7 +113,10 @@ def callback ( request ):
                     cards = scrython.cards.Random()
                     storge_card_name ( event.source.user_id, cards.name() )
 
-                    rpy = [TextSendMessage ( full_cards_information ( cards ) ), ImageSendMessage ( original_content_url = cards.image_uris()['png'], preview_image_url = cards.image_uris()['png'] )]
+                    rpy = [
+                            TextSendMessage ( full_cards_information ( cards ) ),
+                            ImageSendMessage ( original_content_url = cards.image_uris()['png'], preview_image_url = cards.image_uris()['png'] )
+                    ]
                 elif event.message.text.lower() == 'oracle':
                     name = get_card_name ( event.source.user_id )
                     if name == '':
