@@ -2,6 +2,35 @@
 
 power by Scryfall Api: [Scrython](https://github.com/NandaScott/Scrython)
 
+## FSM
+
+![](picture/fsm.py)
+
+## Feature
+
+### Help
+
+![](picture/help.jpg)
+
+### Fetch
+
+![](picture/fetch_lightning_bolt.jpg)
+![](picture/fetch_tymna.jpg)
+
+### Legalities
+
+![](picture/legalities.jpg)
+![](picture/legalities_spell_pierce.jpg)
+
+### Picture & Oracle
+
+![](picture/picture_oracle.jpg)
+![](picture/fetch_malcolm_oracle.jpg)
+
+### Random
+
+![](picture/random.jpg)
+
 ## How to use
 
 ### Python Packages Requirement
